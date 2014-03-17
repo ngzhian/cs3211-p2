@@ -3,11 +3,13 @@
 #include <stdlib.h>
 #include <mpi.h>
 
-int is_prime(int);
-int find_prime_factors(int, int*);
+int is_prime(long);
+long find_prime_factors(long, long*);
+long is_gen(long candidate, long factor, long p);
+long modexp(long t, long u, long n);
 
 int main(int argc, char *argv[]) {
-  int p = atoi(argv[1]);
+  long p = atol(argv[1]);
   if (p == 0) return 0;
 
   double start, end;
@@ -17,53 +19,52 @@ int main(int argc, char *argv[]) {
   MPI_Comm_rank(MPI_COMM_WORLD, &my_rank);
   MPI_Comm_size(MPI_COMM_WORLD, &num_procs);
   
-  int num_per_proc = p/num_procs;
+  long num_per_proc = p/num_procs;
 
-  // all will calculate all prime factors for p
-  // each processor will take a range of generator candidate
-  // range of generators from [2 .. p-1]
+  long *factors = malloc(2 * sqrt(p-1) * sizeof(long));
+  long num_factors = find_prime_factors(p-1, factors);
 
-  int *factors = malloc(2 * sqrt(p-1) * sizeof(int));
-  int num_factors = find_prime_factors(p-1, factors);
+  long candidate_start = my_rank * num_per_proc + 1;
+  long candidate_end = num_per_proc * (my_rank + 1);
 
-  int candidate_start = my_rank * num_per_proc + 1;
-  int candidate_end = num_per_proc * (my_rank + 1);
-
-  int candidate;
-  int num_gens = 0;
+  long candidate;
+  long num_gens = 0;
 
   start = MPI_Wtime();
 
+  printf("rank: %ld, start: %ld, end: %ld\n", my_rank, candidate_start, candidate_end);
   for (candidate = candidate_start; candidate <= candidate_end; candidate++) {
     if (candidate == 0 || candidate == 1 || candidate == p) {
       continue;
     }
-    int is_generator = 1;
-    int j;
+    long is_generator = 1;
+    long j;
     for (j = 0; j < num_factors; j++) {
-      int factor = factors[j];
-      if (!is_gen(candidate, factor, p)) {
+      long factor = factors[j];
+      long m = modexp(candidate, (p-1)/factor, p);
+      if (m == 1L) {
         is_generator = 0;
         break;
       }
     }
     if (is_generator) {
+      //printf("%ld is a generator\n", candidate);
       num_gens++;
     }
   }
 
   end = MPI_Wtime();
 
-  int total_gens;
-  int success = MPI_Reduce(&num_gens, &total_gens, 1, MPI_INT, MPI_SUM, 0, MPI_COMM_WORLD);
+  long total_gens;
+  int success = MPI_Reduce(&num_gens, &total_gens, 1, MPI_LONG, MPI_SUM, 0, MPI_COMM_WORLD);
   if (my_rank == 0) {
-    printf("%d: %d total\n", my_rank, total_gens);
+    printf("%d: %ld total\n", my_rank, total_gens);
     printf("time taken: %f\n", end - start);
   } 
 
 }
 
-int is_prime(int x) {
+int is_prime(long x) {
   return 1;
 }
 
@@ -71,8 +72,8 @@ int is_prime(int x) {
  * into @factors
  * @return the number of prime factors @num has
  */
-int find_prime_factors(int num, int *factors) {
-  int i = 0, s;
+long find_prime_factors(long num, long *factors) {
+  long i = 0, s;
   for (s = 2; s < sqrt(num); s++) {
     if (num % s == 0) {
       factors[i++] = s;
@@ -82,14 +83,14 @@ int find_prime_factors(int num, int *factors) {
   return i;
 }
 
-int is_gen(int candidate, int factor, int p) {
+long is_gen(long candidate, long factor, long p) {
   return (modexp(candidate, ((p-1)/factor), p) != 1);
 }
 
 /* computes s = (t ^ u) mod n
  */
-int modexp(int t, int u, int n) {
-  int s = 1;
+long modexp(long t, long u, long n) {
+  long s = 1;
   while (u > 0) {
     if (u & 1) {
       s = (s * t) % n;
