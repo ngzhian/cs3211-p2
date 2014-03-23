@@ -1,0 +1,15 @@
+#!/bin/bash
+p=1000003
+
+if [ $# -ne 0 ]
+then
+  echo "using p = $1"
+  p=$1
+else
+  echo "no arguments, using p = $p"
+fi
+
+mpirun p2 $p
+mpirun p2p $p
+read -p "press Enter to continue..."
+gprof p2p | less

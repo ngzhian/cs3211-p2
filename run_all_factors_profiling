@@ -1,0 +1,15 @@
+#!/bin/bash
+p=1000003
+
+if [ $# -ne 0 ]
+then
+  echo "using p = $1"
+  p=$1
+else
+  echo "no arguments, using p = $p"
+fi
+
+mpirun p2-all-factors $p
+mpirun p2-all-factors-profile $p
+read -p "press Enter to continue..."
+gprof p2p | less
