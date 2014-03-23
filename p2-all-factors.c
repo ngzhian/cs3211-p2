@@ -53,11 +53,10 @@ int main(int argc, char *argv[]) {
     }
   }
 
+  end = MPI_Wtime();
 
   long total_gens;
   int success = MPI_Reduce(&num_gens, &total_gens, 1, MPI_LONG, MPI_SUM, 0, MPI_COMM_WORLD);
-
-  end = MPI_Wtime();
   if (my_rank == 0) {
     printf("%d: %ld total\n", my_rank, total_gens);
     printf("time taken: %f\n", end - start);
@@ -67,12 +66,6 @@ int main(int argc, char *argv[]) {
 }
 
 int is_prime(long x) {
-  long divisor;
-  for (divisor = 2; divisor <= sqrt(x); divisor++) {
-    if (x%divisor == 0) {
-      return 0;
-    }
-  }
   return 1;
 }
 
