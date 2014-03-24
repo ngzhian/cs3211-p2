@@ -19,7 +19,7 @@ int main(int argc, char *argv[]) {
   MPI_Comm_rank(MPI_COMM_WORLD, &my_rank);
   MPI_Comm_size(MPI_COMM_WORLD, &num_procs);
   
-  long num_per_proc = p/num_procs;
+  long num_per_proc = p/num_procs + 1;
 
   long *factors = malloc(2 * sqrt(p-1) * sizeof(long));
   long num_factors = find_prime_factors(p-1, factors);
@@ -34,7 +34,7 @@ int main(int argc, char *argv[]) {
 
   printf("rank: %ld, start: %ld, end: %ld\n", my_rank, candidate_start, candidate_end);
   for (candidate = candidate_start; candidate <= candidate_end; candidate++) {
-    if (candidate == 0 || candidate == 1 || candidate == p) {
+    if (candidate == 0 || candidate == 1 || candidate >= p) {
       continue;
     }
     long is_generator = 1;
