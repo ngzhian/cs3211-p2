@@ -32,7 +32,7 @@ int main(int argc, char *argv[]) {
 
   start = MPI_Wtime();
 
-  printf("rank: %ld, start: %ld, end: %ld\n", my_rank, candidate_start, candidate_end);
+  //printf("rank: %ld, start: %ld, end: %ld\n", my_rank, candidate_start, candidate_end);
   for (candidate = candidate_start; candidate <= candidate_end; candidate++) {
     if (candidate == 0 || candidate == 1 || candidate >= p) {
       continue;
@@ -92,7 +92,7 @@ long find_prime_factors(long num, long *factors) {
       factors[i++] = num/s;
     }
   }
-  printf("%d/%d\n", q+1, p*2+2); // 1 is prime
+  //printf("%d/%d\n", q+1, p*2+2); // 1 is prime
   return i;
 }
 
