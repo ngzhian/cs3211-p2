@@ -1,0 +1,192 @@
+p:1 n:101
+0: 40 total
+time taken: 0.000057
+
+p:2 n:101
+0: 40 total
+time taken: 0.000465
+
+p:4 n:101
+0: 40 total
+time taken: 0.001182
+
+p:8 n:101
+0: 40 total
+time taken: 0.003159
+
+p:16 n:101
+0: 40 total
+time taken: 0.007026
+
+p:32 n:101
+0: 40 total
+time taken: 0.015965
+
+p:1 n:1009
+0: 288 total
+time taken: 0.001619
+
+p:2 n:1009
+0: 288 total
+time taken: 0.001073
+
+p:4 n:1009
+0: 288 total
+time taken: 0.002080
+
+p:8 n:1009
+0: 288 total
+time taken: 0.003666
+
+p:16 n:1009
+0: 288 total
+time taken: 0.007974
+
+p:32 n:1009
+0: 288 total
+time taken: 0.016440
+
+p:1 n:10007
+0: 5002 total
+time taken: 0.003949
+
+p:2 n:10007
+0: 5002 total
+time taken: 0.002436
+
+p:4 n:10007
+0: 5002 total
+time taken: 0.002300
+
+p:8 n:10007
+0: 5002 total
+time taken: 0.004037
+
+p:16 n:10007
+0: 5002 total
+time taken: 0.007910
+
+p:32 n:10007
+0: 5002 total
+time taken: 0.008119
+
+p:1 n:100003
+0: 28560 total
+time taken: 0.151235
+
+p:2 n:100003
+0: 28560 total
+time taken: 0.079523
+
+p:4 n:100003
+0: 28560 total
+time taken: 0.041820
+
+p:8 n:100003
+0: 28560 total
+time taken: 0.027859
+
+p:16 n:100003
+0: 28560 total
+time taken: 0.030445
+
+p:32 n:100003
+0: 28560 total
+time taken: 0.025997
+
+p:1 n:1000003
+0: 333332 total
+time taken: 1.031200
+
+p:2 n:1000003
+0: 333332 total
+time taken: 0.522476
+
+p:4 n:1000003
+0: 333332 total
+time taken: 0.310341
+
+p:8 n:1000003
+0: 333332 total
+time taken: 0.178762
+
+p:16 n:1000003
+0: 333332 total
+time taken: 0.164537
+
+p:32 n:1000003
+0: 333332 total
+time taken: 0.097935
+
+p:1 n:10000019
+0: 4218984 total
+time taken: 37.797555
+
+p:2 n:10000019
+0: 4218984 total
+time taken: 18.913686
+
+p:4 n:10000019
+0: 4218984 total
+time taken: 10.877667
+
+p:8 n:10000019
+0: 4218984 total
+time taken: 7.115671
+
+p:16 n:10000019
+0: 4218984 total
+time taken: 4.637273
+
+p:32 n:10000019
+0: 4218984 total
+time taken: 3.996324
+
+p:1 n:100000007
+0: 49897680 total
+time taken: 159.600644
+
+p:2 n:100000007
+0: 49897680 total
+time taken: 78.116763
+
+p:4 n:100000007
+0: 49897680 total
+time taken: 40.321316
+
+p:8 n:100000007
+0: 49897680 total
+time taken: 26.493169
+
+p:16 n:100000007
+0: 49897680 total
+time taken: 19.892404
+
+p:32 n:100000007
+0: 49897680 total
+time taken: 17.108924
+
+p:1 n:1000000007
+0: 500000002 total
+time taken: 928.122377
+
+p:2 n:1000000007
+0: 500000002 total
+time taken: 425.164628
+
+p:4 n:1000000007
+0: 500000002 total
+time taken: 235.658506
+
+p:8 n:1000000007
+0: 500000002 total
+time taken: 156.946504
+
+p:16 n:1000000007
+0: 500000002 total
+time taken: 120.584040
+
+p:32 n:1000000007
+0: 500000002 total
+time taken: 96.849020
+
